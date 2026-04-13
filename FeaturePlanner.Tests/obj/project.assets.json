@@ -3675,6 +3675,7 @@
     "net8.0": [
       "FeaturePlanner.Web >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.11.0",
+      "bunit >= 1.26.44",
       "coverlet.collector >= 3.0.3",
       "xunit >= 2.4.1",
       "xunit.runner.visualstudio >= 2.4.1"
@@ -3731,6 +3732,10 @@
             "target": "Package",
             "version": "[16.11.0, )"
           },
+          "bunit": {
+            "target": "Package",
+            "version": "[1.26.44, )"
+          },
           "coverlet.collector": {
             "target": "Package",
             "version": "[3.0.3, )"
@@ -3779,6 +3784,15 @@
       "level": "Error",
       "message": "Unable to find package xunit.runner.visualstudio. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
       "libraryId": "xunit.runner.visualstudio",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package bunit. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
+      "libraryId": "bunit",
       "targetGraphs": [
         "net8.0"
       ]

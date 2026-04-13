@@ -52,6 +52,10 @@
               "target": "Package",
               "version": "[16.11.0, )"
             },
+            "bunit": {
+              "target": "Package",
+              "version": "[1.26.44, )"
+            },
             "coverlet.collector": {
               "target": "Package",
               "version": "[3.0.3, )"

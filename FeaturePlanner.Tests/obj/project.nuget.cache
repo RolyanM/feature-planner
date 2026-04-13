@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4JgTwvpznKk=",
+  "dgSpecHash": "6ObZtpNwlng=",
   "success": false,
   "projectFilePath": "F:\\Martin\\Code\\feature-planner\\FeaturePlanner.Tests\\FeaturePlanner.Tests.csproj",
   "expectedPackageFiles": [
@@ -62,6 +62,15 @@
       "level": "Error",
       "message": "Unable to find package xunit.runner.visualstudio. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
       "libraryId": "xunit.runner.visualstudio",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package bunit. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages",
+      "libraryId": "bunit",
       "targetGraphs": [
         "net8.0"
       ]
