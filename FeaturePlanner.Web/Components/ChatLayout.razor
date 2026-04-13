@@ -34,11 +34,28 @@
         </div>
 
         <!-- Chat Messages Area -->
-        <div class="flex-1 overflow-y-auto p-6">
-            <div class="max-w-3xl mx-auto">
-                <div class="bg-white rounded-lg border border-slate-200 p-6 text-center text-slate-500">
-                    <p>Chat messages will appear here</p>
-                </div>
+        <div class="flex-1 overflow-y-auto p-6" @ref="MessagesContainerRef">
+            <div class="max-w-3xl mx-auto space-y-4">
+                @if (Messages.Count == 0)
+                {
+                    <div class="bg-white rounded-lg border border-slate-200 p-6 text-center text-slate-500">
+                        <p>Start the interview by describing your feature or epic</p>
+                    </div>
+                }
+                else
+                {
+                    @foreach (var message in Messages)
+                    {
+                        <div class="flex @(message.IsUserMessage ? "justify-end" : "justify-start")">
+                            <div class="max-w-xl @(message.IsUserMessage ? "bg-blue-600 text-white" : "bg-white border border-slate-200") rounded-lg p-4">
+                                <p class="text-sm">@message.Content</p>
+                                <p class="text-xs @(message.IsUserMessage ? "text-blue-100" : "text-slate-400") mt-2">
+                                    @message.Timestamp.ToString("HH:mm")
+                                </p>
+                            </div>
+                        </div>
+                    }
+                }
             </div>
         </div>
 
@@ -47,10 +64,15 @@
             <div class="max-w-3xl mx-auto">
                 <div class="flex gap-2">
                     <input type="text" 
+                           @bind="InputValue"
+                           @onkeyup="HandleKeyPress"
                            placeholder="Enter your feature description..." 
-                           class="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                    <button class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                        Send
+                           class="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           disabled="@IsLoading" />
+                    <button @onclick="HandleSend" 
+                            class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                            disabled="@(IsLoading || string.IsNullOrWhiteSpace(InputValue))">
+                        @(IsLoading ? "Loading..." : "Send")
                     </button>
                 </div>
             </div>
