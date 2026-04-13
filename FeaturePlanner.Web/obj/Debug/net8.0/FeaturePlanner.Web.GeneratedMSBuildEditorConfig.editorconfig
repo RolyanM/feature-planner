@@ -61,3 +61,7 @@ build_metadata.AdditionalFiles.CssScope = b-mcizt5aigx
 [F:/Martin/Code/feature-planner/FeaturePlanner.Web/Components/Layout/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-dtl4mvtvpm
+
+[F:/Martin/Code/feature-planner/FeaturePlanner.Web/Components/ToastNotification.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUb2FzdE5vdGlmaWNhdGlvbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-q7znqr5bpq

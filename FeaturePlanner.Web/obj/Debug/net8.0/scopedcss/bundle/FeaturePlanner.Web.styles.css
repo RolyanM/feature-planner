@@ -201,3 +201,18 @@ main[b-mcizt5aigx] {
         overflow-y: auto;
     }
 }
+/* _content/FeaturePlanner.Web/Components/ToastNotification.razor.rz.scp.css */
+:deep(.toast-container)[b-q7znqr5bpq] {
+    animation: slideIn-b-q7znqr5bpq 0.3s ease-out;
+}
+
+@keyframes slideIn-b-q7znqr5bpq {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

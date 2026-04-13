@@ -8,8 +8,22 @@ namespace FeaturePlanner.Web.Components;
 /// </summary>
 public partial class ChatLayout : ComponentBase
 {
-    // Component will handle:
-    // - Sidebar state (collapsed/expanded on mobile)
-    // - Main chat area rendering
-    // - Chat message handling (in future iterations)
+    private ToastNotification? ToastRef { get; set; }
+
+    private List<string> DummySessions { get; } = new()
+    {
+        "Epic: Payment Gateway",
+        "Feature: User Authentication",
+        "Story: Dashboard Analytics",
+        "Epic: Mobile Support"
+    };
+
+    /// <summary>
+    /// Handles clicking on a session in the sidebar.
+    /// Shows a "coming soon" toast notification.
+    /// </summary>
+    private void HandleSessionClick(string sessionName)
+    {
+        ToastRef?.Show($"Coming soon: {sessionName}");
+    }
 }

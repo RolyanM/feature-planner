@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FeaturePlanner.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1095c6341fdb53b3020b27b894ed23631a550d57")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+68a2d3936400c5b8e58981004795ff223249ddf4")]
 [assembly: System.Reflection.AssemblyProductAttribute("FeaturePlanner.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FeaturePlanner.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
