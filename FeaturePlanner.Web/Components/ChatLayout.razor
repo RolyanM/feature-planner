@@ -25,58 +25,87 @@
         </div>
     </div>
 
-    <!-- Main Chat Area -->
+    <!-- Main Content Area -->
     <div class="main-chat-area flex-1 flex flex-col bg-slate-50">
-        <!-- Header -->
-        <div class="border-b bg-white p-4 shadow-sm">
-            <h2 class="text-lg font-semibold text-slate-900">Chat Interface</h2>
-            <p class="text-sm text-slate-600 mt-1">Discuss your feature with the AI agent</p>
-        </div>
+        @if (CurrentPhase == InterviewPhase.Interview)
+        {
+            <!-- Interview Phase -->
+            <!-- Header -->
+            <div class="border-b bg-white p-4 shadow-sm">
+                <h2 class="text-lg font-semibold text-slate-900">Chat Interview</h2>
+                <p class="text-sm text-slate-600 mt-1">Discuss your feature with the AI agent</p>
+            </div>
 
-        <!-- Chat Messages Area -->
-        <div class="flex-1 overflow-y-auto p-6" @ref="MessagesContainerRef">
-            <div class="max-w-3xl mx-auto space-y-4">
-                @if (Messages.Count == 0)
-                {
-                    <div class="bg-white rounded-lg border border-slate-200 p-6 text-center text-slate-500">
-                        <p>Start the interview by describing your feature or epic</p>
-                    </div>
-                }
-                else
-                {
-                    @foreach (var message in Messages)
+            <!-- Chat Messages Area -->
+            <div class="flex-1 overflow-y-auto p-6" @ref="MessagesContainerRef">
+                <div class="max-w-3xl mx-auto space-y-4">
+                    @if (Messages.Count == 0)
                     {
-                        <div class="flex @(message.IsUserMessage ? "justify-end" : "justify-start")">
-                            <div class="max-w-xl @(message.IsUserMessage ? "bg-blue-600 text-white" : "bg-white border border-slate-200") rounded-lg p-4">
-                                <p class="text-sm">@message.Content</p>
-                                <p class="text-xs @(message.IsUserMessage ? "text-blue-100" : "text-slate-400") mt-2">
-                                    @message.Timestamp.ToString("HH:mm")
-                                </p>
-                            </div>
+                        <div class="bg-white rounded-lg border border-slate-200 p-6 text-center text-slate-500">
+                            <p>Start the interview by describing your feature or epic</p>
                         </div>
                     }
-                }
-            </div>
-        </div>
-
-        <!-- Input Area -->
-        <div class="border-t bg-white p-4 shadow-sm">
-            <div class="max-w-3xl mx-auto">
-                <div class="flex gap-2">
-                    <input type="text" 
-                           @bind="InputValue"
-                           @onkeyup="HandleKeyPress"
-                           placeholder="Enter your feature description..." 
-                           class="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                           disabled="@IsLoading" />
-                    <button @onclick="HandleSend" 
-                            class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
-                            disabled="@(IsLoading || string.IsNullOrWhiteSpace(InputValue))">
-                        @(IsLoading ? "Loading..." : "Send")
-                    </button>
+                    else
+                    {
+                        @foreach (var message in Messages)
+                        {
+                            <div class="flex @(message.IsUserMessage ? "justify-end" : "justify-start")">
+                                <div class="max-w-xl @(message.IsUserMessage ? "bg-blue-600 text-white" : "bg-white border border-slate-200") rounded-lg p-4">
+                                    <p class="text-sm">@message.Content</p>
+                                    <p class="text-xs @(message.IsUserMessage ? "text-blue-100" : "text-slate-400") mt-2">
+                                        @message.Timestamp.ToString("HH:mm")
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                    }
                 </div>
             </div>
-        </div>
+
+            <!-- Input Area -->
+            <div class="border-t bg-white p-4 shadow-sm">
+                <div class="max-w-3xl mx-auto space-y-3">
+                    <div class="flex gap-2">
+                        <input type="text" 
+                               @bind="InputValue"
+                               @onkeyup="HandleKeyPress"
+                               placeholder="Enter your feature description..." 
+                               class="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                               disabled="@IsLoading" />
+                        <button @onclick="HandleSend" 
+                                class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                                disabled="@(IsLoading || string.IsNullOrWhiteSpace(InputValue))">
+                            @(IsLoading ? "Loading..." : "Send")
+                        </button>
+                    </div>
+                    @if (Messages.Count > 2)
+                    {
+                        <button @onclick="HandleNextReviewPlan"
+                                class="w-full px-4 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700 text-sm">
+                            Next: Review Plan →
+                        </button>
+                    }
+                </div>
+            </div>
+        }
+        else if (CurrentPhase == InterviewPhase.PlanSummary)
+        {
+            <!-- Plan Summary Phase -->
+            <!-- Header -->
+            <div class="border-b bg-white p-4 shadow-sm">
+                <h2 class="text-lg font-semibold text-slate-900">Review Your Plan</h2>
+                <p class="text-sm text-slate-600 mt-1">Check that we're aligned before generating issues</p>
+            </div>
+
+            <!-- Summary Content -->
+            <div class="flex-1 overflow-y-auto p-6">
+                <div class="max-w-3xl mx-auto">
+                    <PlanSummary ConversationMessages="Messages" 
+                                 OnBack="HandleBackToInterview"
+                                 OnApprove="HandleApproveAndGenerate" />
+                </div>
+            </div>
+        }
     </div>
 </div>
 

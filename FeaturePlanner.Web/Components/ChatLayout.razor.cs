@@ -7,11 +7,15 @@ namespace FeaturePlanner.Web.Components;
 /// Main layout component for the Feature Planner chat interface.
 /// Provides a responsive two-column layout with sidebar navigation and main chat area.
 /// Manages the interview conversation between user and agile coach AI.
+/// Handles transitions between interview and plan summary phases.
 /// </summary>
 public partial class ChatLayout : ComponentBase
 {
     private ToastNotification? ToastRef { get; set; }
     private ElementReference MessagesContainerRef { get; set; }
+
+    // Phase management
+    private InterviewPhase CurrentPhase { get; set; } = InterviewPhase.Interview;
 
     // Chat state
     private List<ConversationMessage> Messages { get; } = new();
@@ -148,6 +152,38 @@ Start by asking about the overall goal of their feature/epic.";
         {
             // Scroll failed - not critical
         }
+    }
+
+    /// <summary>
+    /// Transitions to the plan summary phase.
+    /// Shows a review of the interview conversation before generation.
+    /// </summary>
+    private void HandleNextReviewPlan()
+    {
+        CurrentPhase = InterviewPhase.PlanSummary;
+        StateHasChanged();
+    }
+
+    /// <summary>
+    /// Transitions back to the interview phase from plan summary.
+    /// Allows user to continue the conversation.
+    /// </summary>
+    private void HandleBackToInterview()
+    {
+        CurrentPhase = InterviewPhase.Interview;
+        StateHasChanged();
+    }
+
+    /// <summary>
+    /// Transitions to the generation phase.
+    /// User has approved the plan; ready to generate epic/features/stories.
+    /// </summary>
+    private void HandleApproveAndGenerate()
+    {
+        // TODO: Wire up Issue #7 generation phase
+        CurrentPhase = InterviewPhase.Generation;
+        ToastRef?.Show("Generating your epic, features, and stories...");
+        StateHasChanged();
     }
 
     protected override async Task OnInitializedAsync()

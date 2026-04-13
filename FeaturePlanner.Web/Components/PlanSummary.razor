@@ -1,0 +1,39 @@
+@if (ConversationMessages != null && ConversationMessages.Count > 0)
+{
+    <div class="space-y-6">
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">Interview Summary</h2>
+            <p class="text-slate-600">Review the conversation below. If everything looks good, proceed to generate your epic, features, and stories.</p>
+        </div>
+
+        <div class="space-y-4">
+            @foreach (var pair in GetQAPairs())
+            {
+                <div class="bg-white border border-slate-200 rounded-lg overflow-hidden">
+                    <div class="bg-blue-600 text-white px-4 py-3 font-semibold">
+                        <span class="text-sm">You asked:</span>
+                    </div>
+                    <div class="px-4 py-3 bg-blue-50 text-slate-900">
+                        @pair.Question
+                    </div>
+                    
+                    <div class="bg-slate-100 text-slate-600 px-4 py-3 font-semibold text-sm">
+                        You said:
+                    </div>
+                    <div class="px-4 py-3 text-slate-900 whitespace-pre-wrap">
+                        @pair.Answer
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="flex gap-3 pt-4">
+            <button @onclick="OnBack" class="px-6 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700">
+                ← Back to Interview
+            </button>
+            <button @onclick="OnApprove" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 ml-auto">
+                Approve & Generate →
+            </button>
+        </div>
+    </div>
+}
