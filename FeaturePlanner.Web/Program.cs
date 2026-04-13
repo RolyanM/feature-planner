@@ -1,10 +1,15 @@
 using FeaturePlanner.Web.Components;
+using FeaturePlanner.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+// Configure Azure OpenAI service with settings from appsettings.json
+builder.Services.Configure<AzureOpenAiOptions>(builder.Configuration.GetSection("AzureOpenAi"));
+builder.Services.AddAzureOpenAiService();
 
 var app = builder.Build();
 

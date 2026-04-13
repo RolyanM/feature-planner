@@ -29,3 +29,4 @@ F:\Martin\Code\feature-planner\FeaturePlanner.Web\obj\Debug\net8.0\FeaturePlanne
 F:\Martin\Code\feature-planner\FeaturePlanner.Web\obj\Debug\net8.0\ref\FeaturePlanner.Web.dll
 F:\Martin\Code\feature-planner\FeaturePlanner.Web\bin\Debug\net8.0\package-lock.json
 F:\Martin\Code\feature-planner\FeaturePlanner.Web\bin\Debug\net8.0\package.json
+F:\Martin\Code\feature-planner\FeaturePlanner.Web\obj\Debug\net8.0\FeaturePlanner.Web.sourcelink.json
